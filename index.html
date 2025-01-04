@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <title>Rick and Morty Character Generator</title>
+  </head>
+  <body>
+    <h1>Rick and Morty Characters</h1>
+    <section>
+      <div id="main-collection" class="main-collection-heading">
+        <h2>Main Collection</h2>
+        <div id="cards-container">
+        </div> 
+
+      </div>
+          <!--sort buttons starts-->
+    <div class="sort">
+      <span>Sort items</span>
+      <button class="sortBtn" type="button" data-sortdir="asc">A-Z</button>
+      <button class="sortBtn" type="button" data-sortdir="desc">Z-A</button>
+    </div>
+    <!--sort buttons end-->
+      <!--item list starts-->
+      <div id="main">
+      </div>
+    </section>
+    <!--END OF MAIN-->
+    
+    <!-- FAVS -->
+    <section>
+      <div class="favs-heading">
+        <h2>Favorites Collection</h2>
+      </div>
+                <!--sort buttons starts-->
+    <div class="sort">
+      <span>Sort items</span>
+      <button class="sortBtn" type="button" data-sortdir="asc">A-Z</button>
+      <button class="sortBtn" type="button" data-sortdir="desc">Z-A</button>
+    </div>
+    <!--sort buttons end-->
+      <!--item list starts-->
+      <div id="favs"></div>
+      <!--item list starts-->
+    </section>
+    <!--END OF FAVS-->
+    <script src="index.js" defer></script>
+  </body>
+</html>

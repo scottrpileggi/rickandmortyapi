@@ -30,3 +30,7 @@ img {
   width: 250px;
 }
 
+#section-container {
+  display: flex;
+}
+

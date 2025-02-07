@@ -30,7 +30,7 @@ function renderCharacters(data) {
 
     // provide text and imageSrc
     image.src = character.image;
-    name.innerText = ` Name: ${character.name} `;
+    name.innerText = character.name;
     species.innerText = ` Species: ${character.species} `;
     like.textContent = "FAV";
 
@@ -43,11 +43,11 @@ function renderCharacters(data) {
     cardsContainer.appendChild(div);
   });
 
-  // add/remove from favs function:
+  // add/remove from favs functions:
   const allItems = document.getElementsByClassName("card");
   console.log(allItems);
 
-  const main = document.getElementById("main-collection").children[1];
+  const main = document.getElementById("cards-container");
   console.log("main container: ", main);
 
   const favs = document.getElementById("favs");
@@ -65,7 +65,6 @@ function renderCharacters(data) {
   };
 
   [...allItems].forEach((item) => {
-    console.log(item);
     item.addEventListener("click", () => {
       const parentId = item.parentElement.id;
       const itemId = item.id;
@@ -76,68 +75,69 @@ function renderCharacters(data) {
       updateCollections(itemId, direction());
     });
   });
-}
+  // sort items functions:
+  /**
+   * SORTING NODES WITHIN A CONTAINER
+   * Please, make sure to read the following files in the exercises-info folder before you start
+   * * "02 SortingNode.md"
+   */
 
+  /**
+   * @task
+   * Select all elements that have class of "item" as a NodeList.
+   * Store them in the allItems variable
+   * Example: const allItems = <Your code>;
+   */
+  // Your code goes here...
+
+  /**
+   * @task
+   * Select all sort buttons by class of "sortBtn" as a NodeList.
+   * Store them in the sortBtn variable
+   * Example: const sortBtn = <Your code>;
+   */
+
+  // Your code goes here...
+  const sortBtn = document.getElementsByClassName("sortBtn");
+  /**
+   * @task
+   * Create a sortData function that follows the list of requirements:
+   * * Takes an argument of the direction to sort as a string of 'asc' or 'desc'
+   * * Defines a container variable to get the node by id of 'main'
+   * * Uses the allItems variable as a source for the array of items to sort
+   * * Sorts the items by id and appends them back to the main container in the sorted order.
+   * Example: sortData('desc') => <reversed order of items in the main container>
+   * Example: sortData('asc') => <a-z order of items in the main container>
+   */
+
+  // Your code goes here...
+
+  const sortData = (direction) => {
+    const array = Array.from(allItems);
+
+    array.sort((a, b) => {
+      const textA = a.querySelector("h3").innerText.toUpperCase();
+      const textB = b.querySelector("h3").innerText.toUpperCase();
+
+      if (direction === "asc") {
+        return textA < textB ? -1 : textA > textB ? 1 : 0;
+      } else {
+        return textA > textB ? -1 : textA < textB ? 1 : 0;
+      }
+    });
+
+    array.forEach((item) => {
+      cardsContainer.appendChild(item);
+    });
+  };
+
+  // Iterate through the every item in sortBtn NodeList and apply the addEventListener click event to each item.
+  [...sortBtn].forEach((button) => {
+    button.addEventListener("click", () => {
+      const direction = button.dataset.sortdir;
+      sortData(direction);
+    });
+  });
+}
 // Call fetchData to fetch and render the characters
 fetchData(renderCharacters);
-
-/**
- * SORTING NODES WITHIN A CONTAINER
- * Please, make sure to read the following files in the exercises-info folder before you start
- * * 01 SelectNodes.md
- */
-
-/**
- * @task
- * Select all elements that have class of "item" as a NodeList.
- * Store them in the allItems variable
- * Example: const allItems = <Your code>;
- */
-
-// Your code goes here...
-
-/**
- * @task
- * Select the main container by the id of "main"
- * Store it in the main constant
- * Example: const main = <Your code>
- * */
-
-// Your code goes here
-
-/**
- * @task
- * Select the favorites container by id of "favs"
- * Store it in the favs constant
- * Example: const favs = <Your code>;
- */
-
-// Your code goes here
-
-/**
- * @task
- * Create the updateCollections(id, direction) function that follows the list of requirements:
- * Takes an argument of the item id (number)
- * Take an argument of direction as a string value of 'toMain' or 'toFavs'
- * Moves the element from the current parent to the new parent (from main to favs or vice versa)
- * Changes the icon of the element: fa-heart-circle-plus for main, fa-heart-crack for favs items.
- */
-
-// Your code goes here
-
-// updateCollections("1", "toFavs");
-/**
- * @task
- * Iterate through the every item in allItems NodeList and apply the
- * addEventListener click event to each item.
- * The item click must execute/call the following:
- * * Get the current item's parent id ('main' or 'favs')
- * * Get the current item id (a number value)
- * * Set the direction constant to be equal to 'toFavs' or 'toMain', based off the current location
- * * The direction means the collection to move the item into, when the item is clicked
- * * If the correct item's location is the parent of id 'main' -> the direction is 'toFavs'
- * * If the correct item's location is the parent of id 'favs' -> the direction is 'toMain'
- * * Make the updateCollections function call, assign the item Id and the direction defined above
- */
-
-// Your code goes here...

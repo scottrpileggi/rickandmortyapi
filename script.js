@@ -1,17 +1,40 @@
-const cardsContainer = document.querySelector("#cards-container");
+const rickAndMortyURL = "https://rickandmortyapi.com/api/character";
 
-async function fetchData(callBack) {
+async function fetchData(url) {
   try {
-    const response = await fetch("https://rickandmortyapi.com/api/character");
+    const response = await fetch(url);
     const data = await response.json();
-    const characters = data.results; // Extract the 'results' array from the response
-    callBack(characters); // Pass the data to the render function
+    return data.results; // Extract the 'results' array from the response
   } catch (err) {
     console.log(err);
   }
 }
 
+async function fetchAndCall() {
+  const data = await fetchData(rickAndMortyURL);
+  return renderCharacters(data);
+}
+
+// // with promise chaining:
+
+// function fetchData(url) {
+//   return fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => data.results)
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
+
+// function fetchAndPrint() {
+//   fetchData(rickAndMortyURL).then((data) => {
+//     console.log("data: ", data);
+//   });
+// }
+
 function renderCharacters(data) {
+  const cardsContainer = document.querySelector("#cards-container");
+
   data.forEach((character, index) => {
     // create elements
     const div = document.createElement("div");
@@ -45,7 +68,6 @@ function renderCharacters(data) {
 
   // add/remove from favs functions:
   const allItems = document.getElementsByClassName("card");
-  console.log(allItems);
 
   const main = document.getElementById("cards-container");
   console.log("main container: ", main);
@@ -63,7 +85,7 @@ function renderCharacters(data) {
       return main.appendChild(document.getElementById(id));
     }
   };
-
+  console.log("favs container: ", favs);
   [...allItems].forEach((item) => {
     item.addEventListener("click", () => {
       const parentId = item.parentElement.id;
@@ -72,9 +94,11 @@ function renderCharacters(data) {
       const direction = () => {
         return parentId === "cards-container" ? "toFavs" : "toMain";
       };
+
       updateCollections(itemId, direction());
     });
   });
+
   // sort items functions:
   /**
    * SORTING NODES WITHIN A CONTAINER
@@ -111,15 +135,23 @@ function renderCharacters(data) {
    */
 
   // Your code goes here...
+  // const mainCards = [...cardsContainer];
+  // const favCards = [...favs];
 
-  const sortData = (direction) => {
-    const array = Array.from(allItems);
+  // const allItems = document.getElementsByClassName("card");
+
+  const mainCards = main.childNodes;
+
+  const favCards = favs.childNodes;
+
+  const sortData = (dir, container) => {
+    const array = Array.from(container.childNodes);
 
     array.sort((a, b) => {
       const textA = a.querySelector("h3").innerText.toUpperCase();
       const textB = b.querySelector("h3").innerText.toUpperCase();
 
-      if (direction === "asc") {
+      if (dir === "asc") {
         return textA < textB ? -1 : textA > textB ? 1 : 0;
       } else {
         return textA > textB ? -1 : textA < textB ? 1 : 0;
@@ -127,17 +159,19 @@ function renderCharacters(data) {
     });
 
     array.forEach((item) => {
-      cardsContainer.appendChild(item);
+      container.appendChild(item);
     });
   };
 
   // Iterate through the every item in sortBtn NodeList and apply the addEventListener click event to each item.
   [...sortBtn].forEach((button) => {
     button.addEventListener("click", () => {
+      console.log(button);
       const direction = button.dataset.sortdir;
-      sortData(direction);
+      const targetContainer = button.dataset.target === "favs" ? favs : main;
+      sortData(direction, targetContainer);
     });
   });
 }
 // Call fetchData to fetch and render the characters
-fetchData(renderCharacters);
+fetchAndCall();

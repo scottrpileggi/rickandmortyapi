@@ -66,6 +66,16 @@ function renderCharacters(data) {
     cardsContainer.appendChild(div);
   });
 
+  const favAliens = document.getElementById("alien-counter");
+  const favHumans = document.getElementById("human-counter");
+
+  let alienCounter = 0;
+  let humanCounter = 0;
+  favAliens.innerText = alienCounter;
+  favHumans.innerText = humanCounter;
+  console.log("humanCounter: ", humanCounter);
+  console.log("alienCounter: ", alienCounter);
+
   // add/remove from favs functions:
   const allItems = document.getElementsByClassName("card");
 
@@ -75,9 +85,33 @@ function renderCharacters(data) {
 
   const updateCollections = (id, direction) => {
     if (direction === "toFavs") {
+      updateSpecies(id, direction);
       return favs.appendChild(document.getElementById(id));
     } else {
+      updateSpecies(id, direction);
       return main.appendChild(document.getElementById(id));
+    }
+  };
+
+  const updateSpecies = (id, direction) => {
+    const species = document.getElementById(id).childNodes[2].innerText;
+    console.log(species);
+    if (direction === "toFavs") {
+      if (species.includes("Human")) {
+        humanCounter++;
+        favHumans.innerText = humanCounter;
+      } else {
+        alienCounter++;
+        favAliens.innerText = alienCounter;
+      }
+    } else {
+      if (species.includes("Human")) {
+        humanCounter--;
+        favHumans.innerText = humanCounter;
+      } else {
+        alienCounter--;
+        favAliens.innerText = alienCounter;
+      }
     }
   };
 
@@ -126,18 +160,6 @@ function renderCharacters(data) {
       sortData(direction, targetContainer);
     });
   });
-
-  const favAliens = document.getElementById("alien-counter");
-  const favHumans = document.getElementById("human-counter");
-
-  let alienCounter = 0;
-  let humanCounter = 0;
-
-  favAliens.innerText = alienCounter;
-  favHumans.innerText = humanCounter;
-
-  console.log("humanCounter: ", humanCounter);
-  console.log("alienCounter: ", alienCounter);
 }
 
 // Call fetchData to fetch and render the characters

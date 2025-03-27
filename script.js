@@ -70,22 +70,17 @@ function renderCharacters(data) {
   const allItems = document.getElementsByClassName("card");
 
   const main = document.getElementById("cards-container");
-  console.log("main container: ", main);
 
   const favs = document.getElementById("favs");
-  console.log("favs container: ", favs);
 
   const updateCollections = (id, direction) => {
     if (direction === "toFavs") {
-      // document.getElementById(id).children[0].className = "fas fa-heart-broken";
       return favs.appendChild(document.getElementById(id));
     } else {
-      // document.getElementById(id).children[0].className =
-      //   "fa-solid fa-heart-circle-plus";
       return main.appendChild(document.getElementById(id));
     }
   };
-  console.log("favs container: ", favs);
+
   [...allItems].forEach((item) => {
     item.addEventListener("click", () => {
       const parentId = item.parentElement.id;
@@ -99,50 +94,9 @@ function renderCharacters(data) {
     });
   });
 
-  // sort items functions:
-  /**
-   * SORTING NODES WITHIN A CONTAINER
-   * Please, make sure to read the following files in the exercises-info folder before you start
-   * * "02 SortingNode.md"
-   */
-
-  /**
-   * @task
-   * Select all elements that have class of "item" as a NodeList.
-   * Store them in the allItems variable
-   * Example: const allItems = <Your code>;
-   */
-  // Your code goes here...
-
-  /**
-   * @task
-   * Select all sort buttons by class of "sortBtn" as a NodeList.
-   * Store them in the sortBtn variable
-   * Example: const sortBtn = <Your code>;
-   */
-
-  // Your code goes here...
   const sortBtn = document.getElementsByClassName("sortBtn");
-  /**
-   * @task
-   * Create a sortData function that follows the list of requirements:
-   * * Takes an argument of the direction to sort as a string of 'asc' or 'desc'
-   * * Defines a container variable to get the node by id of 'main'
-   * * Uses the allItems variable as a source for the array of items to sort
-   * * Sorts the items by id and appends them back to the main container in the sorted order.
-   * Example: sortData('desc') => <reversed order of items in the main container>
-   * Example: sortData('asc') => <a-z order of items in the main container>
-   */
 
-  // Your code goes here...
-  // const mainCards = [...cardsContainer];
-  // const favCards = [...favs];
-
-  // const allItems = document.getElementsByClassName("card");
-
-  const mainCards = main.childNodes;
-
-  const favCards = favs.childNodes;
+  // variables to track 'Species' type in the favs section...
 
   const sortData = (dir, container) => {
     const array = Array.from(container.childNodes);
@@ -172,6 +126,19 @@ function renderCharacters(data) {
       sortData(direction, targetContainer);
     });
   });
+
+  const favAliens = document.getElementById("alien-counter");
+  const favHumans = document.getElementById("human-counter");
+
+  let alienCounter = 0;
+  let humanCounter = 0;
+
+  favAliens.innerText = alienCounter;
+  favHumans.innerText = humanCounter;
+
+  console.log("humanCounter: ", humanCounter);
+  console.log("alienCounter: ", alienCounter);
 }
+
 // Call fetchData to fetch and render the characters
 fetchAndCall();

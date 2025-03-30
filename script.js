@@ -42,27 +42,23 @@ function renderCharacters(data) {
     const image = document.createElement("img");
     const name = document.createElement("h3");
     const species = document.createElement("h3");
-    const like = document.createElement("button");
 
     // assign classNames
     div.id = `card-${index + 1}`;
     div.classList = "card";
     imgContainer.classList = "img-container";
     image.classList = "card-img";
-    like.classList = "empty";
 
     // provide text and imageSrc
     image.src = character.image;
     name.innerText = character.name;
     species.innerText = ` Species: ${character.species} `;
-    like.textContent = "FAV";
 
     // Build Card
     div.appendChild(imgContainer);
     imgContainer.appendChild(image);
     div.appendChild(name);
     div.appendChild(species);
-    div.appendChild(like);
     cardsContainer.appendChild(div);
   });
 

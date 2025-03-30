@@ -7,8 +7,6 @@ body {
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  display: flex;
-  flex-direction: column;
 }
 
 h1, h2 {
@@ -25,6 +23,8 @@ img {
   object-fit: fill;
 }
 
+section {width: 50%};
+
 .img-container {
   height: 250px;
   width: 250px;
@@ -32,5 +32,47 @@ img {
 
 #section-container {
   display: flex;
+  justify-content: space-around;
+}
+
+#fav-tracker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.species-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+}
+
+.species-container span {
+  padding-left: 7px;
+  padding-top: 2px;
+  font-size: 20px;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#main-collection, #favs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#cards-container, #favs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
 }
 

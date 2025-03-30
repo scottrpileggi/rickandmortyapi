@@ -18,15 +18,33 @@
   </head>
   <body>
     <h1>Rick and Morty Characters</h1>
+    <div id="fav-tracker">
+      <div class="species-container">
+        <h3>FAV HUMANS:</h3>
+        <span id="human-counter"></span>
+      </div>
+      <div class="species-container">
+        <h3>FAV ALIENS:</h3>
+        <span id="alien-counter"></span>
+      </div>
+    </div>
     <div id="section-container">
       <section>
         <div id="main-collection" class="main-collection-heading">
-          <h2>Main Collection</h2>
-          <!--sort buttons starts-->
-          <div class="sort">
-            <span>Sort items</span>
-            <button class="sortBtn" data-sortdir="asc" data-target="main">Sort Main Ascending</button>
-            <button class="sortBtn" data-sortdir="desc" data-target="main">Sort Main Descending</button>
+          <div class="main-heading">
+            <h2>Main Collection</h2>
+            <!--sort buttons starts-->
+            <div class="sort">
+              <span>SORT: </span>
+              <button class="sortBtn" data-sortdir="asc" data-target="main">
+                ASC
+              </button>
+              <button class="sortBtn" data-sortdir="desc" data-target="main">
+                DESC
+              </button>
+            </div>
+          </div>
+
           <!--sort buttons end-->
           <!--item list starts-->
           <div id="cards-container"></div>
@@ -36,28 +54,24 @@
 
       <!-- FAVS -->
       <section>
-        <div class="favs-heading">
-          <h2>Favorites Collection</h2>
-          <div id="fav-tracker">
-            <div class="species-container">
-              <h3>Humans: </h3>
-              <span id="human-counter"></span>
+        <div id="favs-container">
+          <div class="favs-heading">
+            <h2>Favorites Collection</h2>
+            <!--sort buttons starts-->
+            <div class="sort">
+              <span>SORT: </span>
+              <button class="sortBtn" data-sortdir="asc" data-target="favs">
+                ASC
+              </button>
+              <button class="sortBtn" data-sortdir="desc" data-target="favs">
+                DESC
+              </button>
             </div>
-            <div class="species-container">
-              <h3>Aliens: </h3>
-              <span id="alien-counter"></span>
-            </div>
+            <!--sort buttons end-->
           </div>
-          <!--sort buttons starts-->
-          <div class="sort">
-            <span>Sort items</span>
-            <button class="sortBtn" data-sortdir="asc" data-target="favs">Sort Favs Ascending</button>
-            <button class="sortBtn" data-sortdir="desc" data-target="favs">Sort Favs Descending</button>
-          </div>
-          <!--sort buttons end-->
+          <!--item list starts-->
+          <div id="favs"></div>
         </div>
-        <!--item list starts-->
-        <div id="favs"></div>
       </section>
       <!--END OF FAVS-->
     </div>

@@ -1,8 +1,9 @@
 html {
-  background-color: lightblue;
+  background-color: black;;
 }
 
 body {
+  color: rgb(68, 199, 68);
   font-family: "Nunito", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
@@ -17,17 +18,17 @@ h1, h2 {
 
 h3 {padding: 0;}
 
+section {width: 50%};
+
+.img-container {
+  height: 500px;
+  width: 500px;
+}
 img {
   height: 100%;
   width: 100%;
   object-fit: fill;
-}
-
-section {width: 50%};
-
-.img-container {
-  height: 250px;
-  width: 250px;
+  border-radius: 5%;
 }
 
 #section-container {
@@ -40,6 +41,28 @@ section {width: 50%};
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.sortBtn {
+  width: 100px;
+  background-color: rgb(0, 191, 255);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sortBtn:hover {
+  background-color: lightslategray;
+  transform: scale(1.05);
+}
+
+.sortBtn:active {
+  background-color: gray;
+  transform: scale(0.95);
 }
 
 .species-container {
@@ -62,6 +85,10 @@ section {width: 50%};
   gap: 10px;
 }
 
+.main-heading, .favs-heading {
+  margin-bottom: 75px;
+}
+
 #main-collection, #favs-container {
   display: flex;
   flex-direction: column;
@@ -76,3 +103,53 @@ section {width: 50%};
   gap: 40px;
 }
 
+.card {
+  width: 300px;
+  height: 414.16px;
+  border: 15px solid darkslategray;
+  background-color: darkslategray;
+  border-radius: 5%;
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out; /* Smoother transitions */
+  color: white;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.05); /* Slightly enlarge the card on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+}
+
+.card:active {
+  cursor: pointer;
+  transform: scale(0.95); /* Slightly shrink the card on click */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adjust shadow for click effect */
+}
+
+.card h3 {
+  text-align: center;
+  background-color: lightslategray;
+  border-radius: 6%;
+}
+
+.species {
+  width: 200px;
+  margin: auto;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card {
+    width: 250px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    width: 100%;
+    height: auto;
+  }
+  #section-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

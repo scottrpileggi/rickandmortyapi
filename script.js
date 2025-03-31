@@ -48,6 +48,7 @@ function renderCharacters(data) {
     div.classList = "card";
     imgContainer.classList = "img-container";
     image.classList = "card-img";
+    species.classList = "species";
 
     // provide text and imageSrc
     image.src = character.image;
